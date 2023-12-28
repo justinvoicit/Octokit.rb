@@ -60,16 +60,16 @@ module Octokit
       # Refresh an access_token
       def refresh_access_token(code, app_id = client_id, app_secret = client_secret, options = {})
         options = options.merge({
+                                  refresh_token: code,
                                   client_id: app_id,
                                   client_secret: app_secret,
                                   grant_type: 'refresh_token',
-                                  refresh_token: code,
                                   headers: {
                                     content_type: 'application/json',
                                     accept: 'application/json'
                                   }
                                 })
-      
+
         post "#{web_endpoint}login/oauth/access_token", options
       end
 
